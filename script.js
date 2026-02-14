@@ -388,14 +388,30 @@ slider.addEventListener('input', (e) => {
 });
 
 // Runaway NO Button
+let noBtnX = 0;
+let noBtnY = 0;
+
 noBtn.addEventListener('mouseover', moveNoButton);
 noBtn.addEventListener('click', moveNoButton);
 
 function moveNoButton() {
-    const x = (Math.random() - 0.5) * 300;
-    const y = (Math.random() - 0.5) * 300;
+    // Calculate bounds (stay somewhat within view, but move FAR)
+    const maxMove = 300;
 
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    let newX, newY;
+    let attempts = 0;
+
+    // Generate a new position that is at least 100px away from the current position
+    do {
+        newX = (Math.random() - 0.5) * 2 * maxMove; // -300 to 300
+        newY = (Math.random() - 0.5) * 2 * maxMove;
+        attempts++;
+    } while (Math.abs(newX - noBtnX) < 100 && Math.abs(newY - noBtnY) < 100 && attempts < 10);
+
+    noBtnX = newX;
+    noBtnY = newY;
+
+    noBtn.style.transform = `translate(${newX}px, ${newY}px)`;
 
     const phrases = ["Nope!", "Too slow!", "Can't catch me!", "Try again!", "Access Denied!", "Nice try!"];
     noBtn.innerText = phrases[Math.floor(Math.random() * phrases.length)];
