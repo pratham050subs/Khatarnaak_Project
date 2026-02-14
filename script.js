@@ -193,61 +193,105 @@ function validateAndCrash() {
     }, 800);
 }
 
-// === STEP 4: FATAL ERROR (HORROR MODE) ===
+// === STEP 4: FATAL ERROR (HORROR MODE + BSOD) ===
 function triggerFatalError() {
-    calibrationInterface.innerHTML = `
-        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; color:red; text-align:center;">
-            <h1 style="font-family:'Courier New'; font-size:5rem; text-shadow: 2px 2px black;">FATAL ERROR</h1>
-            <p style="font-size:2rem; font-weight:bold;">SYSTEM CORRUPTED</p>
-            <p style="font-family:'Courier New'; letter-spacing:2px;">EMOTIONAL_CORE_DUMP_INITIATED...</p>
-        </div>
+    // 1. Hide Cursor to simulate system freeze
+    document.body.style.cursor = "none";
+
+    // Clear the interface but keep the node (or just hide it)
+    calibrationInterface.classList.add('hidden');
+
+    // Create Horror Overlay
+    const horrorOverlay = document.createElement('div');
+    horrorOverlay.style.position = "fixed";
+    horrorOverlay.style.top = "0";
+    horrorOverlay.style.left = "0";
+    horrorOverlay.style.width = "100%";
+    horrorOverlay.style.height = "100%";
+    horrorOverlay.style.backgroundColor = "black";
+    horrorOverlay.style.color = "red";
+    horrorOverlay.style.display = "flex";
+    horrorOverlay.style.flexDirection = "column";
+    horrorOverlay.style.alignItems = "center";
+    horrorOverlay.style.justifyContent = "center";
+    horrorOverlay.style.zIndex = "9999";
+    horrorOverlay.innerHTML = `
+        <h1 style="font-family:'Courier New'; font-size:5rem; text-shadow: 2px 2px black;">FATAL ERROR</h1>
+        <p style="font-size:2rem; font-weight:bold;">SYSTEM CORRUPTED</p>
+        <p style="font-family:'Courier New'; letter-spacing:2px;">EMOTIONAL_CORE_DUMP_INITIATED...</p>
     `;
+    document.body.appendChild(horrorOverlay);
 
     logContainer.innerHTML = "";
-    document.body.style.backgroundColor = "black";
-    document.body.style.overflow = "hidden"; // Prevent scroll
-
-    // Intense Shake
+    document.body.style.overflow = "hidden";
     document.body.style.animation = "shake 0.05s infinite";
 
-    // Horror Flicker
+    // Horror Flicker Phase (2 seconds)
     let flickerCount = 0;
     const flickerInterval = setInterval(() => {
         flickerCount++;
+        if (Math.random() > 0.7) document.body.style.filter = "invert(1) hue-rotate(90deg)";
+        else document.body.style.filter = "none";
 
-        // Random Invert
-        if (Math.random() > 0.7) {
-            document.body.style.filter = "invert(1) hue-rotate(90deg)";
-        } else {
-            document.body.style.filter = "none";
-        }
-
-        // Random Background Flash
-        if (Math.random() > 0.8) {
-            document.body.style.backgroundColor = "red";
-        } else {
-            document.body.style.backgroundColor = "black";
-        }
-
+        if (Math.random() > 0.8) horrorOverlay.style.backgroundColor = "red";
+        else horrorOverlay.style.backgroundColor = "black";
     }, 50);
 
-    // Play Error Sound if possible
-    try {
-        const audio = document.getElementById('error-sound');
-        audio.volume = 0.5;
-        audio.play();
-    } catch (e) { }
+    try { const audio = document.getElementById('error-sound'); audio.volume = 0.5; audio.play(); } catch (e) { }
 
-    // INCREASED TIMER & END HORROR
+    // 2. FAKE SYSTEM RESTART (Black Screen -> BSOD)
     setTimeout(() => {
         clearInterval(flickerInterval);
         document.body.style.animation = "none";
         document.body.style.filter = "none";
-        document.body.style.backgroundColor = ""; // Reset for next screen
 
-        calibrationInterface.classList.add('hidden');
-        revealRomanticSide();
-    }, 3000);
+        // Remove horror overlay
+        horrorOverlay.remove();
+
+        // Create BSOD Overlay
+        const bsodOverlay = document.createElement('div');
+        bsodOverlay.id = "bsod";
+        bsodOverlay.style.position = "fixed";
+        bsodOverlay.style.top = "0";
+        bsodOverlay.style.left = "0";
+        bsodOverlay.style.width = "100%";
+        bsodOverlay.style.height = "100%";
+        bsodOverlay.style.backgroundColor = "black"; // Start black
+        bsodOverlay.style.color = "white";
+        bsodOverlay.style.fontFamily = "'Segoe UI', sans-serif";
+        bsodOverlay.style.padding = "100px";
+        bsodOverlay.style.boxSizing = "border-box";
+        bsodOverlay.style.zIndex = "10000";
+        bsodOverlay.style.cursor = "none";
+        document.body.appendChild(bsodOverlay);
+
+        // Pause on BLACK for 1.5s
+        setTimeout(() => {
+            // Show BSOD Content
+            bsodOverlay.style.backgroundColor = "#0078D7";
+            bsodOverlay.innerHTML = `
+                <h1 style="font-size:100px; font-weight:normal; margin-bottom:20px;">:(</h1>
+                <p style="font-size:30px; margin-bottom:30px;">Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
+                <p style="font-size:20px;">0% complete</p>
+                <br><br>
+                <div style="font-size:16px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" style="width:100px; height:100px; float:left; margin-right:20px;">
+                    <p>For more information about this issue and possible fixes, visit https://www.windows.com/stopcode</p>
+                    <p>If you call a support person, give them this info:</p>
+                    <p>Stop code: CRITICAL_LOVE_PROCESS_DIED</p>
+                </div>
+            `;
+
+            // Hold BSOD for 3s then Reveal
+            setTimeout(() => {
+                bsodOverlay.remove();
+                document.body.style.cursor = "default"; // Restore cursor
+                revealRomanticSide();
+            }, 3000);
+
+        }, 1500);
+
+    }, 2000);
 }
 
 function revealRomanticSide() {
