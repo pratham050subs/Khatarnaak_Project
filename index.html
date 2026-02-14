@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Test Engine v9.0 - ULTRA MODE</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Add sound effects -->
+    <audio id="scan-sound" src="https://www.soundjay.com/buttons/beep-07.mp3"></audio>
+    <audio id="error-sound" src="https://www.soundjay.com/buttons/error.mp3"></audio>
+    <audio id="reveal-sound" src="https://www.soundjay.com/buttons/tada.mp3"></audio>
+</head>
+
+<body>
+
+    <!-- PART 1: THE DISGUISE (TESTING PLATFORM) -->
+    <div id="calibration-interface">
+        <div class="terminal-header">
+            <span class="status-light blink"></span> AUTONOMOUS TESTING_BOT // ONLINE - INSANITY LEVEL: MAX
+        </div>
+
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Sidebar / Status -->
+                <div class="sidebar">
+                    <div class="stat-box">
+                        <p>CPU LOAD</p>
+                        <div class="bar-outer">
+                            <div id="cpu-bar" class="bar-inner">12%</div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <p>MEMORY</p>
+                        <div class="bar-outer">
+                            <div id="mem-bar" class="bar-inner">34%</div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <p>NETWORK</p>
+                        <div id="network-stat" class="text-stat" style="color:orange;">SEARCHING...</div>
+                    </div>
+                    <!-- New: Insanity Meter -->
+                    <div class="stat-box">
+                        <p>INSANITY</p>
+                        <div class="bar-outer">
+                            <div id="insanity-bar" class="bar-inner"
+                                style="background: linear-gradient(to right, yellow, red);">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-panel">
+                    <div id="log-container" class="log-window hidden">
+                        <!-- Fake logs go here -->
+                        <div class="log-line">> SYSTEM READY... PREPARING FOR CHAOS</div>
+                    </div>
+
+                    <div id="task-container" class="task-box">
+                        <!-- STEP 1: CONNECTION (NEW) -->
+                        <div id="step-connection">
+                            <h2 style="font-size:16px; margin-bottom:15px; color:#fff;">DEVICE PAIRING REQUIRED - ENTER
+                                THE MATRIX</h2>
+                            <p style="font-size:13px; color:#aaa; margin-bottom:20px;">
+                                To initiate testing, please enable <strong>WiFi Hotspot</strong> on the target mobile
+                                device.<br>
+                                Ensure device is within 2 meters range. Or else... BOOM!
+                            </p>
+
+                            <div class="radar-container hidden" id="radar">
+                                <div class="radar-sweep"></div>
+                            </div>
+
+                            <button id="scan-btn" class="tech-btn">SCAN FOR DEVICES - UNLEASH THE BEAST</button>
+                            <p id="scan-status" style="margin-top:10px; font-size:12px; color:#666;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-section hidden" id="progress-section">
+                <p>TEST PROGRESS:</p>
+                <div class="progress-bar-container">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <p id="system-status">STATUS: IDLE - WAITING FOR MADNESS</p>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <p>SESSION ID: VAL-1402 | MODE: ROOT ACCESS - INSANE EDITION</p>
+        </div>
+    </div>
+
+    <!-- PART 2: THE REVEAL (ROMANTIC) -->
+    <div id="romantic-interface" class="hidden">
+        <div class="hearts-container"></div>
+
+        <div class="love-letter-container">
+            <h1 class="fade-in">Test Failed Successfully ❤️ - TOTAL INSANITY ACHIEVED!</h1>
+
+            <div class="content-split">
+                <div class="photo-section fade-in delay-1">
+                    <div class="photo-frame photo-interactive">
+                        <!-- USER TO REPLACE SRC -->
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop"
+                            alt="Us" id="couple-photo">
+                    </div>
+                </div>
+
+                <div class="text-section fade-in delay-2">
+                    <p>Hey <span id="partner-name">[Name]</span>,</p>
+                    <p>
+                        I tried running diagnostics on <span id="tested-app" style="font-weight:bold;">[App]</span>, but
+                        my CPU overheated.
+                        <br><br>
+                        Reason: <b>Extreme Affection Overload - INSANE LEVELS DETECTED!</b>
+                    </p>
+
+                    <!-- NEW ROMANTIC TASKS -->
+                    <div class="mini-tasks" style="position:relative;">
+                        <p class="task-label">How much do you love me? (CRANK IT TO MAX!)</p>
+                        <input type="range" min="1" max="1000" value="1" class="love-slider" id="love-slider">
+                        <p id="slider-feedback" class="feedback-text">More... INSANELY MORE!</p>
+
+                        <p class="task-label" style="margin-top:15px;">Are you my Valentine?</p>
+                        <button id="final-yes-btn" class="heart-btn">YES! (Accept)</button>
+                        <button id="no-btn" class="heart-btn" style="margin-top:10px;">NO (Try to Click Me)</button>
+
+                        <div class="terms-container">
+                            <label>
+                                <input type="checkbox" checked disabled>
+                                I agree to be the cutest girlfriend in the world forever. (Mandatory)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>

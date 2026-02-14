@@ -1,0 +1,22 @@
+
+# 🤖 Autonomous Testing Bot - Instructions
+
+I have updated the website to look like a professional testing tool! Update your browser to see the changes.
+
+## Features Added:
+1.  **App Input**: She can type any app name (e.g. "YouTube", "WhatsApp").
+2.  **Fake Logs**: It will scroll through "hacking" style text.
+3.  **Manual Stabilization**: It will ask her to hold a button to "fix connection".
+4.  **Crash & Reveal**: It fails dramatically and shows the love letter.
+
+## How to Test:
+1.  Open `index.html` in your browser.
+2.  Enter an app name and click **INITIATE TEST RUN**.
+3.  Wait for the logs.
+4.  When it warns about "Connection Unstable", click and hold the orange button.
+
+## Customization:
+-   **Edit `script.js`**: Change names or add more specific log messages.
+-   **Edit `index.html`**: Update the photo `src` to your own image!
+
+Happy Valentine's Day! ❤️
