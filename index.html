@@ -145,7 +145,60 @@
             </div>
         </div>
 
-        <script src="script.js"></script>
+    </div>
+    <!-- PART 3: DECRYPT GAME SCREEN -->
+    <div id="decrypt-interface" class="hidden">
+        <div class="hearts-container"></div>
+
+        <div class="love-letter-container">
+            <h1 class="fade-in">🔒 DECRYPT MY HEART 🔒</h1>
+            <p class="subtitle fade-in delay-1">Unlock the secret to my heart...</p>
+
+            <div class="content-split">
+                <div class="photo-section fade-in delay-1">
+                    <div class="photo-frame photo-interactive">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop"
+                            alt="Us" id="couple-photo-2">
+                    </div>
+                </div>
+
+                <div class="text-section fade-in delay-2">
+                    <p>Hey <span id="partner-name-2">[Name]</span>,</p>
+                    <p>
+                        You've accepted my invitation! Now, can you decrypt the secret message I've hidden in my heart?
+                        <br><br>
+                        <b>Type the magic word to unlock my heart... 💕</b>
+                    </p>
+
+                    <!-- DECRYPT GAME -->
+                    <div class="mini-tasks" style="position:relative; margin-top:30px;">
+                        <div class="task-box-romantic"
+                            style="border:2px solid #ff66a3; padding:20px; border-radius:15px; background:rgba(255,102,163,0.1);">
+                            <p class="task-label" style="font-size:1.3rem; margin-bottom:15px;">🔒 DECRYPT MY HEART:</p>
+                            <input type="text" id="secret-word" class="common-input"
+                                placeholder="Type the magic word..." autocomplete="off"
+                                style="width:80%; font-size:1.2rem; padding:15px;">
+                            <p class="hint-text" style="margin-top:10px; font-size:0.9rem;">(Hint: It involves us... and
+                                starts with L)</p>
+                            <p id="decrypt-feedback" class="feedback-text" style="margin-top:15px; min-height:30px;">
+                            </p>
+                        </div>
+
+                        <!-- FINAL DETONATE BUTTON -->
+                        <div id="final-stage" class="hidden" style="margin-top:30px;">
+                            <p class="task-label" style="font-size:1.5rem; margin-bottom:15px; color:#ff0066;">⚠️ FINAL
+                                STEP ⚠️</p>
+                            <p style="margin-bottom:20px; color:#ff99cc;">You've unlocked my heart! Now... are you ready
+                                for the explosion? 💥</p>
+                            <button id="detonate-btn" class="detonate-btn">💥 EXPLODE HEART 💥</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

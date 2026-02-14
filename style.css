@@ -8,13 +8,96 @@
 body {
     background-color: #0d0d0d;
     color: #00ff41;
-    /* Hacker Green */
     font-family: 'Courier Prime', monospace;
-    overflow: hidden;
-    height: 100vh;
+    min-height: 100vh;
+    /* Allow growth */
+    margin: 0;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    overflow-y: auto;
+    /* Allow vertical scroll */
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* ... existing code ... */
+
+/* === ROMANTIC THEME === */
+#romantic-interface,
+#decrypt-interface {
+    position: fixed;
+    /* Keep fixed to cover screen initially */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a0b14 0%, #2c0e1e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Start from top so we can scroll */
+    padding: 20px 0;
+    color: #ff99cc;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 100;
+    overflow-y: auto;
+    /* Allow internal scrolling if needed */
+}
+
+.love-letter-container {
+    background: rgba(20, 0, 10, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #ff66a3;
+    box-shadow: 0 0 50px rgba(255, 105, 180, 0.2);
+    max-width: 800px;
+    width: 90%;
+    /* Remove max-height to let it grow */
+    height: auto;
+    margin: auto;
+    /* Center vertically/horizontally if possible or allow scroll margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    /* Ensure z-index works */
+}
+
+/* ... existing code ... */
+
+/* === THEME CHANGE (DARKER ROMANTIC) === */
+.theme-heavenly #romantic-interface {
+    /* Darker, richer red/purple instead of bright pink */
+    background: linear-gradient(135deg, #4a0018 0%, #990033 100%) !important;
+    color: #ffd6e7 !important;
+}
+
+.theme-heavenly .love-letter-container {
+    background: rgba(50, 0, 20, 0.9);
+    /* Dark semi-transparent */
+    border-color: #ff3366;
+    box-shadow: 0 0 60px rgba(255, 0, 80, 0.6);
+    color: #fff;
+}
+
+.theme-heavenly h1 {
+    color: #ff99bb;
+    text-shadow: 0 0 15px rgba(255, 0, 80, 0.8);
+}
+
+.theme-heavenly .text-section p,
+.theme-heavenly .task-label,
+.theme-heavenly .feedback-text,
+.theme-heavenly .hint-text {
+    color: #ffccd5;
+}
+
+.theme-heavenly .common-input {
+    background: rgba(100, 0, 40, 0.5);
+    border-color: #ff3366;
+    color: #fff;
 }
 
 /* === TESTING PLATFORM THEME (Unchanged mostly) === */
@@ -249,57 +332,7 @@ body {
     }
 }
 
-/* === ROMANTIC THEME (IMPROVED LAYOUT) === */
-#romantic-interface {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #1a0b14 0%, #2c0e1e 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #ff99cc;
-    font-family: 'Montserrat', sans-serif;
-    z-index: 100;
-    overflow-y: auto;
-    /* Allow scrolling if really small screen */
-}
 
-.love-letter-container {
-    background: rgba(20, 0, 10, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid #ff66a3;
-    box-shadow: 0 0 50px rgba(255, 105, 180, 0.2);
-    max-width: 800px;
-    width: 90%;
-    max-height: 90vh;
-    /* Prevent overflow */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.content-split {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    align-items: center;
-    margin-top: 20px;
-    width: 100%;
-}
-
-/* Responsive: Stack on mobile */
-@media (max-width: 600px) {
-    .content-split {
-        flex-direction: column;
-    }
-}
 
 h1 {
     font-family: 'Dancing Script', cursive;
@@ -503,7 +536,64 @@ h1 {
     opacity: 0.8;
 }
 
-.terms-container input {
-    accent-color: #ff66a3;
-    margin-right: 5px;
+
+/* === NEW TASKS STYLING === */
+.common-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ff66a3;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+    width: 60%;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.hint-text {
+    font-size: 0.7em;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+.detonate-btn {
+    background: linear-gradient(45deg, #ff0000, #ff6600);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff3300;
+    transition: transform 0.1s;
+    animation: pulse-red 2s infinite;
+}
+
+.detonate-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes pulse-red {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 50, 50, 0.7);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(255, 50, 50, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 50, 50, 0);
+    }
+}
+
+
+
+.hidden {
+    display: none !important;
 }
